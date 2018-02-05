@@ -172,7 +172,7 @@ namespace GridMC
 
       // Allocate polymer and solvent arrays.
       allocate();
-
+      Log::file() <<"after allocate" << endl;
       // Set grid, read thermodynamic parameters, and allocate grid's memory.
       grid_.setBox(boxL_, nGrid_);
       grid_.allocate(nType_);
@@ -279,16 +279,20 @@ namespace GridMC
         	  if (chargeDensity_ > 1)
         	     UTIL_THROW("Charge density should no greater than one");
             chargeDistribution_.resize(nA_ * nPolymers_);
+            //Log::file() << "charge distribution for polymers:  ";
             for (int i = 0; i < nA_ * nPolymers_; i++) {
 	          	 if(random_.Random()<chargeDensity_){
                   chargeDistribution_.push_back(-1.0);
                   chargeCount_++;
+                  Log::file() << -1.0;
                }
                else{
                   chargeDistribution_.push_back(0.0);
+                   Log::file() << 0.0;
                }
-               // cout << "System.cpp:  chargedistribution:  " << chargeCount_ << "   " << chargeDistribution_.back() << endl;
+               //Log::file() << endl;
             }
+               //Log::file()<< "System.cpp:  chargedistribution:  " << chargeCount_ << "   " << chargeDistribution_.back() << endl;
         	  nSolvents_ += chargeCount_;
             break;
          default:  // Explicit ions.

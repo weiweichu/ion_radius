@@ -103,7 +103,7 @@ namespace GridMC
       if (line.size() <= 0)
          UTIL_THROW("reading error: sqrtNbar");
       sscanf(line.c_str(), "%lf %s", &sqrtNbar_, comment);
-
+      //Log::file() << "sqrtNbar  " << sqrtNbar_ << endl;
       // Read esStrength (electrostatic interaction strength).
       getline(in, line);
       if (line.size() <= 0)

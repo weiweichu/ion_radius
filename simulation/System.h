@@ -180,7 +180,7 @@ namespace GridMC
       int       micellePolymerNQ_, micelleNIons_, micelleIonQ_;
       int       qCode_, useEwald_;
       int       nFreeIons_;
-      int       chargeCount_;
+      int       chargeCount_ = 0;
       vector<double> chargeDistribution_;
       double    chargeDensity_;
       /// Initial configuration parameter.
