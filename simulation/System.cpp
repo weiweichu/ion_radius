@@ -278,9 +278,9 @@ namespace GridMC
         	   	 UTIL_THROW("Number of free ions is not even");
         	  if (chargeDensity_ > 1)
         	     UTIL_THROW("Charge density should no greater than one");
-            chargeDistribution_.resize(nA_ * nPolymers_);
+            chargeDistribution_.resize(nB_ * nPolymers_);
             //Log::file() << "charge distribution for polymers:  ";
-            for (int i = 0; i < nA_ * nPolymers_; i++) {
+            for (int i = 0; i < nB_ * nPolymers_; i++) {
 	          	 if(random_.Random()<chargeDensity_){
                   chargeDistribution_.push_back(-1.0);
                   chargeCount_++;
@@ -510,14 +510,14 @@ namespace GridMC
             k = 0;
             for (i = 0; i < nPolymers_; ++i) {
               ptr = polymer_[i];
-              for (j = 0; j < nA_; ++j) {
+              for (j = 0; j < nA_; ++j ){
+                ptr[j].q = 0.0;
+              }
+              for (j = nA_; j < nA_ + nB_; ++j) {
                 ptr[j].q = chargeDistribution_[k];
                 k++;
               }
 
-              for (j = nA_; j < nA_ + nB_; ++j ){
-                ptr[j].q = 0.0;
-              }
             }
             for (i = 0; i < chargeCount_; i++) {
               solvent_[i].q = 1.0;
